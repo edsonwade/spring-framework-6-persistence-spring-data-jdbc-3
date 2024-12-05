@@ -10,21 +10,21 @@ import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @SpringBootTest
 class Spring6jdbc3ApplicationTests {
 
     @Test
     void testGetSpeakers() {
-        RestTemplate restTemplate = new RestTemplate();
+        var restTemplate = new RestTemplate();
 
         ResponseEntity<List<Speaker>> speakersResponse = restTemplate.exchange(
-                "http://localhost:8080/", HttpMethod.GET,
-                null, new ParameterizedTypeReference<List<Speaker>>() {
+                "http://localhost:8081/", HttpMethod.GET,
+                null, new ParameterizedTypeReference<>() {
                 });
 
-        assertTrue(speakersResponse.getBody() != null, "Body is null");
+        assertNotNull(speakersResponse.getBody(), "Body is null");
 
         List<Speaker> speakers = speakersResponse.getBody();
 

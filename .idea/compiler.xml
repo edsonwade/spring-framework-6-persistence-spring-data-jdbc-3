@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="spring6jdbc3" />
+        <module name="spring6jdbc3 (7)" />
+        <module name="spring6jdbc3 (8)" />
+        <module name="spring6jdbc3 (5)" />
+        <module name="spring6jdbc3 (6)" />
+        <module name="spring6jdbc3 (3)" />
+        <module name="spring6jdbc3 (4)" />
+        <module name="spring6jdbc3 (1)" />
+        <module name="spring6jdbc3 (2)" />
+        <module name="spring6jdbc3 (11)" />
+        <module name="spring6jdbc3 (10)" />
+        <module name="spring6jdbc3 (9)" />
+        <module name="spring6jdbc3 (13)" />
+        <module name="spring6jdbc3 (12)" />
+      </profile>
+    </annotationProcessing>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="spring6jdbc3" options="-parameters" />
+      <module name="spring6jdbc3 (1)" options="-parameters" />
+      <module name="spring6jdbc3 (10)" options="-parameters" />
+      <module name="spring6jdbc3 (11)" options="-parameters" />
+      <module name="spring6jdbc3 (12)" options="-parameters" />
+      <module name="spring6jdbc3 (13)" options="-parameters" />
+      <module name="spring6jdbc3 (2)" options="-parameters" />
+      <module name="spring6jdbc3 (3)" options="-parameters" />
+      <module name="spring6jdbc3 (4)" options="-parameters" />
+      <module name="spring6jdbc3 (5)" options="-parameters" />
+      <module name="spring6jdbc3 (6)" options="-parameters" />
+      <module name="spring6jdbc3 (7)" options="-parameters" />
+      <module name="spring6jdbc3 (8)" options="-parameters" />
+      <module name="spring6jdbc3 (9)" options="-parameters" />
+    </option>
+  </component>
+</project>

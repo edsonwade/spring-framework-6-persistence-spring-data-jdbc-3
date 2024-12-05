@@ -2,7 +2,6 @@ package com.pluralsight.conference;
 
 import com.pluralsight.conference.model.Speaker;
 import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
@@ -10,12 +9,12 @@ import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 class Spring6jdbc3ApplicationTests {
 
     @Test
-    public void testCreateSpeaker(){
+    public void testCreateSpeaker() {
         RestTemplate restTemplate = new RestTemplate();
 
         Speaker speaker = new Speaker();
@@ -30,10 +29,10 @@ class Spring6jdbc3ApplicationTests {
 
         ResponseEntity<List<Speaker>> speakersResponse = restTemplate.exchange(
                 "http://localhost:8080/speaker", HttpMethod.GET,
-                null, new ParameterizedTypeReference<List<Speaker>>() {
+                null, new ParameterizedTypeReference<>() {
                 });
 
-        assertTrue(speakersResponse.getBody() != null, "Body is null");
+        assertNotNull(speakersResponse.getBody(), "Body is null");
 
         List<Speaker> speakers = speakersResponse.getBody();
 
