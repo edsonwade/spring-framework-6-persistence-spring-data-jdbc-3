@@ -13,7 +13,7 @@ import java.util.Map;
 @Repository("speakerRepository")
 public class SpeakerRepositoryImpl implements SpeakerRepository {
 
-    private JdbcTemplate jdbcTemplate;
+    private final JdbcTemplate jdbcTemplate;
 
     public SpeakerRepositoryImpl(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;

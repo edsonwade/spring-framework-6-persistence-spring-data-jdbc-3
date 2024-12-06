@@ -1,7 +1,12 @@
 package com.pluralsight.conference;
 
 import com.pluralsight.conference.model.Speaker;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
@@ -9,35 +14,47 @@ import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
 class Spring6jdbc3ApplicationTests {
+    private static final Logger log = LoggerFactory.getLogger(Spring6jdbc3ApplicationTests.class);
+    public static final String URL = "http://localhost:8081/api/v1/speakers";
+    RestTemplate restTemplate;
 
-    @Test
-    public void testCreateSpeaker() {
-        RestTemplate restTemplate = new RestTemplate();
-
-        Speaker speaker = new Speaker();
-        speaker.setName("John Henry");
-
-        restTemplate.put("http://localhost:8080/speaker", speaker);
+    @BeforeEach
+    void setup() {
+        restTemplate = new RestTemplate();
     }
 
+    @DisplayName("Test Create Speaker")
+    @Test
+    void testCreateSpeaker() {
+        Speaker speaker = new Speaker();
+        speaker.setName("John Henry");
+        restTemplate.put(URL, speaker);
+
+        assertNotNull(speaker, "Speaker is not null");
+        assertEquals("John Henry", speaker.getName(), "Speaker name is John Henry");
+        assertEquals(10, speaker.getName().length(), "Speaker name has 10 characters");
+        assertTrue(speaker.getName().startsWith("J"), "Speaker name starts with J");
+    }
+
+    @DisplayName("Test Get Speakers")
     @Test
     void testGetSpeakers() {
-        RestTemplate restTemplate = new RestTemplate();
 
         ResponseEntity<List<Speaker>> speakersResponse = restTemplate.exchange(
-                "http://localhost:8080/speaker", HttpMethod.GET,
+                URL, HttpMethod.GET,
                 null, new ParameterizedTypeReference<>() {
                 });
 
-        assertNotNull(speakersResponse.getBody(), "Body is null");
+        assertNotNull(speakersResponse.getBody(), "Body is not null");
 
         List<Speaker> speakers = speakersResponse.getBody();
 
         for (Speaker speaker : speakers) {
-            System.out.println("Speaker name: " + speaker.getName());
+            log.info("Speaker name: {} ", speaker.getName());
         }
     }
 }

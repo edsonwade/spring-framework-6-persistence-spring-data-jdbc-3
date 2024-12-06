@@ -10,7 +10,7 @@ import java.util.List;
 @Service("speakerService")
 public class SpeakerServiceImpl implements SpeakerService {
 
-    private SpeakerRepository speakerRepository;
+    private final SpeakerRepository speakerRepository;
 
     public SpeakerServiceImpl(SpeakerRepository speakerRepository) {
         this.speakerRepository = speakerRepository;

@@ -2,31 +2,33 @@ package com.pluralsight.conference.controller;
 
 import com.pluralsight.conference.model.Speaker;
 import com.pluralsight.conference.service.SpeakerService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
+@RequestMapping("/api/v1/speakers")
 public class SpeakerController {
 
-    private SpeakerService speakerService;
+    private static final Logger log = LoggerFactory.getLogger(SpeakerController.class.getName());
+
+    private final SpeakerService speakerService;
 
     public SpeakerController(SpeakerService speakerService) {
         this.speakerService = speakerService;
     }
 
-    @PutMapping("/speaker")
-    public Speaker createSpeaker(@RequestBody Speaker speaker) {
-        System.out.println("Name: " + speaker.getName());
-
-        return speakerService.create(speaker);
-    }
-
-    @GetMapping("/speaker")
+    @GetMapping
     public List<Speaker> getSpeakers() {
         return speakerService.findAll();
+    }
+
+    @PutMapping
+    public Speaker createSpeaker(@RequestBody Speaker speaker) {
+        log.info("Name: {}", speaker.getName());
+
+        return speakerService.create(speaker);
     }
 }
